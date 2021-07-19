@@ -11,8 +11,8 @@ class Admin implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // Do something here
-        if (!session()->has('isLoggedIn')) {
-            return redirect()->to(site_url('auth/login'));
+        if (session()->get('role') != 0) {
+            return redirect()->to(site_url('home/index'));
         }
     }
 
@@ -23,3 +23,20 @@ class Admin implements FilterInterface
         // Do something here
     }
 }
+// class Admin implements FilterInterface
+// {
+//     public function before(RequestInterface $request, $arguments = null)
+//     {
+//         // Do something here
+//         if (!session()->has('isLoggedIn')) {
+//             return redirect()->to(site_url('auth/login'));
+//         }
+//     }
+
+//     //--------------------------------------------------------------------
+
+//     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
+//     {
+//         // Do something here
+//     }
+// }
